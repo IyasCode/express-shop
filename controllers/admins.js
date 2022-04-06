@@ -15,7 +15,8 @@ exports.postAdminsIndex = (req, res, next) => {
     newId,
     req.body.name,
     req.body.price,
-    req.body.urlImage
+    req.body.urlImage,
+    req.body.detail
     );
   
   product.save();
@@ -42,4 +43,12 @@ exports.getAdminsAllProducts = (req, res, next) => {
       products: products
     })
   })
+}
+
+exports.postAdminsDeleteProduct = (req, res, next) => {
+  console.log(req.body);
+  
+  ProductModel.deleteProduct(req.body.productId);
+  
+  res.redirect('/admins/all-products');
 }

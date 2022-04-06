@@ -12,7 +12,7 @@ const productsPath = path.join(datasPath, 'products.json');
 module.exports = class Cart {
   constructor() {
     this.products = [];
-    this.totalPrice = 0;
+    this.totalPrice;
   }
   
   addProduct(productId) {
@@ -39,4 +39,27 @@ module.exports = class Cart {
       
     })
   }
+  
+  static getAll(callback) {
+    fs.readFile(cartPath, (err, data) => {
+      if (err) {
+        casllback([]);
+      } else {
+        callback(JSON.parse(data));
+      }
+    })
+  }
+  
+  static getTotalPrice() {
+    const cartProducts = JSON.parse(fs.readFileSync(cartPath));
+    
+    this.totalPrice = 0;
+    
+    cartProducts.forEach((prod) =>  {
+      this.totalPrice += +prod.price
+    })
+    
+    return this.totalPrice.toFixed(2);
+  }
+  
 }

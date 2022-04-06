@@ -1,8 +1,6 @@
 const ProductModel = require('../models/product');
 const CartModel = require('../models/cart')
 
-const userCart = [];
-
 exports.getShopsIndex = (req, res, next) => {
   res.render('shops/index', {
     pageTitle: 'Home'
@@ -23,17 +21,13 @@ exports.getShopsProducts = (req, res, next) => {
 }
 
 exports.getShopsMyCart = (req, res, next) => {
-  let userTotal = 0;
-  
-  userCart.forEach((product) => {
-    userTotal += +product.price
+  CartModel.getAll((products) => {
+    res.render('shops/my-cart', {
+      pageTitle: 'My Cart',
+      products: products,
+      totalPrice: CartModel.getTotalPrice()
+    });
   })
-  
-  res.render('shops/my-cart', {
-    pageTitle: 'My Cart',
-    userCart: userCart,
-    userTotal: userTotal.toFixed(2)
-  });
 }
 
 exports.postShopsMyCart = (req, res, next) => {
