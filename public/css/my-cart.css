@@ -1,0 +1,19 @@
+.my-cart-box {
+  width: 85%;
+  margin: 0px auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.my-cart-product {
+  margin-bottom: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  border: 2px solid #3E4167;
+  border-radius: 3px;
+  background-color: #F1F2FF;
+}

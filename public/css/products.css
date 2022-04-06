@@ -1,0 +1,23 @@
+.product-box {
+  margin: 10px auto;
+  padding: 15px;
+  border: 2px solid #41499A;
+  border-radius: 5px;
+  width: 70%;
+  background-color: white;
+  box-shadow: 1px 1px 10px #717495 ;
+}
+
+.all-products-box {
+  width: 40%;
+  padding: 5px;
+}
+
+
+.big-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+}

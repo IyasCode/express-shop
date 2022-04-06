@@ -1,0 +1,33 @@
+<%- include('../includes/head.ejs') %>
+
+<link rel="stylesheet" href="/css/my-cart.css" >
+
+</head>
+
+<body>
+
+<%- include('../includes/navigation.ejs') %>
+
+  <main>
+    <h1>My cart</h1>
+    <br/>
+    <% if (userCart.length) { %>
+      <h2>Total: <%- userTotal %></h2>
+      <br/>
+      <ul class="my-cart-box">
+        <% for (let product of userCart) { %>
+          <li class="my-cart-product">
+            <img src="<%- product.urlImage%>" width="20%"/>
+            <h4><%- product.name%></h4>
+            <h3>$ <%- product.price%></h4>
+            <button>delete</button>
+          </li>
+        <% } %>
+      </ul>
+    <% } else { %>
+      <h3> your cart is empty </h3>
+    <% } %>
+    
+  </main>
+
+<%- include('../includes/end.ejs') %>

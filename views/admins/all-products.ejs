@@ -1,0 +1,40 @@
+<%- include('../includes/head.ejs') %>
+
+<link rel="stylesheet" href="/css/products.css">
+
+</head>
+
+<body>
+
+<%- include('../includes/navigation.ejs') %>
+
+  <main>
+    <% if (products.length) { %>
+       <div class="big-box">
+        <% for(let product of products) { %>
+          <div class="product-box all-products-box">
+            <img src="<%- product.urlImage %>"
+            width="100%"/>
+            <div class="product-name">
+              <h2> <%- product.name %> </h2>
+            </div>
+            <div class="product-price">
+              <h4> $ <%- product.price %> </h4>
+            </div>
+            <div class="button-box">
+              <button>
+                Edit
+              </button>
+              <button>
+                Delete
+              </button>
+            </div>
+          </div>
+        <% } %>
+      </div>
+    <% } else { %>
+      <h1>No Products</h1>
+    <% } %>
+  </main>
+
+<%- include('../includes/end.ejs') %>
