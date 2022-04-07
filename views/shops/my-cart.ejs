@@ -20,7 +20,10 @@
             <img src="<%- product.urlImage%>" width="20%"/>
             <h4><%- product.name%></h4>
             <h3>$ <%- product.price%></h4>
-            <button>delete</button>
+            <form action="/my-cart/delete" method="POST">
+              <button>delete</button>
+              <input type="hidden" name="cartId" value="<%- product.cartId %>"/>
+            </form>
           </li>
         <% } %>
       </ul>

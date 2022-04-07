@@ -10,7 +10,8 @@ const cartPath = path.join(datasPath, 'cart.json');
 const productsPath = path.join(datasPath, 'products.json');
 
 module.exports = class Cart {
-  constructor() {
+  constructor(cartId) {
+    this.cartId = cartId
     this.products = [];
     this.totalPrice;
   }
@@ -20,6 +21,8 @@ module.exports = class Cart {
     const product = allProducts.find((prod) => {
       return prod.id === productId
     });
+    
+    product.cartId = this.cartId
     
     fs.readFile(cartPath, (err, data) => {
       if(!err) {
@@ -34,10 +37,20 @@ module.exports = class Cart {
     })
   }
   
-  deleteProduct(product) {
-    this.products.forEach((prod) => {
-      
+  static deleteProduct(cartId) {
+    this.products = JSON.parse(fs.readFileSync(cartPath));
+  
+    
+    const productIndex = this.products.findIndex((prod, index) => {
+      return prod.cartId === cartId
     })
+    
+    const newCart = this.products.splice(productIndex, 1);
+    
+    fs.writeFile(cartPath, JSON.stringify(this.products), (err) => {
+      console.log(err);
+    })
+    
   }
   
   static getAll(callback) {
@@ -63,3 +76,4 @@ module.exports = class Cart {
   }
   
 }
+ 

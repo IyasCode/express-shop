@@ -1,5 +1,7 @@
 const ProductModel = require('../models/product');
-const CartModel = require('../models/cart')
+const CartModel = require('../models/cart') ;
+
+const genarateId = require('../helper/genarateId');
 
 exports.getShopsIndex = (req, res, next) => {
   res.render('shops/index', {
@@ -31,13 +33,20 @@ exports.getShopsMyCart = (req, res, next) => {
 }
 
 exports.postShopsMyCart = (req, res, next) => {
-  const productId = req.params.productId
+  const productId = req.params.productId;
+  const cartId = genarateId(25);
   
-  const Cart = new CartModel();
+  const Cart = new CartModel(cartId);
   
   Cart.addProduct(productId)
   
   res.redirect('/my-cart');
+}
+
+exports.postShopsMyCartDelete = (req, res, next) => {
+ CartModel.deleteProduct(req.body.cartId);
+ 
+ res.redirect('/my-cart');
 }
 
 

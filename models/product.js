@@ -19,14 +19,14 @@ module.exports = class Product {
   save() {
     let productsDatas = []
     
-    fs.readFile(dataPath, (err, data) => {
+    fs.readFile(productsPath, (err, data) => {
       if (!err) {
         productsDatas = JSON.parse(data);
       }
       
       productsDatas.push(this);
       
-      fs.writeFile(dataPath, JSON.stringify(productsDatas), (err) => {
+      fs.writeFile(productsPath, JSON.stringify(productsDatas), (err) => {
         if (err) {
           console.log("product model write file", err);
         }
@@ -76,5 +76,5 @@ module.exports = class Product {
       console.log(err);
     })
   }
-  
+   
 }

@@ -33,7 +33,7 @@ exports.getAdminsAddProduct = (req, res, next) => {
 exports.getAdminsEditProduct = (req, res, next) => {
   res.render('admins/edit-product', {
     pageTitle: 'Edit product'
-  })
+  }) 
 }
 
 exports.getAdminsAllProducts = (req, res, next) => {
