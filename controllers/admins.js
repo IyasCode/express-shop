@@ -30,10 +30,13 @@ exports.getAdminsAddProduct = (req, res, next) => {
   })
 }
 
-exports.getAdminsEditProduct = (req, res, next) => {
-  res.render('admins/edit-product', {
-    pageTitle: 'Edit product'
-  }) 
+exports.postAdminsEditProduct = (req, res, next) => {
+  ProductModel.getAll((products) => {
+    res.render('admins/edit-product', {
+      pageTitle: 'Edit product',
+      product: products.find(prod => prod.id === req.body.productId)
+    })
+  })
 }
 
 exports.getAdminsAllProducts = (req, res, next) => {

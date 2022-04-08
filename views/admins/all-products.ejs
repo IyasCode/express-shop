@@ -22,9 +22,12 @@
               <h4> $ <%- product.price %> </h4>
             </div>
             <div class="button-box">
-              <button>
-                Edit
-              </button>
+              <form action="/admins/edit-product" method="POST">
+                <button>
+                  Edit
+                </button>
+                <input type="hidden" name="productId" value="<%- product.id %>"/>
+              </form>
               <form action="/admins/delete-product" method="POST">
                 <button>
                   Delete
