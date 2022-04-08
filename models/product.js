@@ -64,10 +64,8 @@ module.exports = class Product {
   
   static deleteProduct(productId) {
     const allProducts = JSON.parse(fs.readFileSync(productsPath));
-    const productIndex = allProducts.find((prod, index) => {
-      if (prod.id === productId) {
-        return index
-      }
+    const productIndex = allProducts.findIndex((prod, index) => {
+        return prod.id === productId
     });
     
     allProducts.splice(productIndex, 1);
