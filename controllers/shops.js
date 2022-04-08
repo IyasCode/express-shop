@@ -15,11 +15,23 @@ exports.getShopsRedirect = (req, res, next) => {
 
 exports.getShopsProducts = (req, res, next) => {
   ProductModel.getAll((products) => {
-      res.render('shops/products', {
-        pageTitle: 'Products',
-        products: products
-      })
+    res.render('shops/products', {
+      pageTitle: 'Products',
+      products: products
+    })
   })
+}
+
+exports.postShopsProducts = (req, res, next) => {
+  ProductModel.editProduct(
+    req.body.productId,  
+    req.body.name,  
+    req.body.price,  
+    req.body.urlImage,  
+    req.body.detail,  
+  )
+  
+  res.redirect('/products')
 }
 
 exports.getShopsMyCart = (req, res, next) => {

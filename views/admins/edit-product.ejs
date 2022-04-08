@@ -1,5 +1,7 @@
 <%- include('../includes/head.ejs') %>
 
+<link rel="stylesheet" href="/css/edit-product.css" />
+
 </head>
 
 <body>
@@ -7,8 +9,21 @@
 <%- include('../includes/navigation.ejs') %>
 
   <main>
-    <h1>Edit Product</h1>
-    <%  console.log(product) %>
+    <h1>Edit <%- product.name %></h1>
+    <br/>
+    <form action="/products" method="POST"  class="edit-box">
+      <label id="name">Name</label>
+      <input class="edit-inp" type="text" name="name" value="<%- product.name %>" />
+      <label id="price">Price</label>
+      <input class="edit-inp" type="text" name="price" value="<%- product.price %>" />
+      <label id="urlImage">Url image</label>
+      <textarea class="edit-inp" name="urlImage" rows="8" ><%- product.urlImage%></textarea>
+      <label id="detail">Description</label>
+      <textarea class="edit-inp" name="detail" rows="5" ><%- product.detail%></textarea>
+      <br/>
+      <input type="submit" value="Save edit" />
+      <input type="hidden" name="productId" value="<%- product.id%>" />
+    </form>
   </main>
 
 <%- include('../includes/end.ejs') %>

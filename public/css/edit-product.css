@@ -1,0 +1,10 @@
+.edit-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.edit-inp {
+  text-align: center;
+}

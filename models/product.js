@@ -62,6 +62,23 @@ module.exports = class Product {
     })
   }
   
+  static editProduct(productId, name, price, urlImage, detail) {
+    const allProducts = JSON.parse(fs.readFileSync(productsPath));
+      
+    allProducts.find(prod => {
+      if (prod.id === productId) {
+        prod.name = name;
+        prod.price = price;
+        prod.urlImage = urlImage;
+        prod.detail = detail;
+      }
+    })
+    
+    fs.writeFile(productsPath, JSON.stringify(allProducts), (err) => {
+      console.log(err);
+    })
+  }
+  
   static deleteProduct(productId) {
     const allProducts = JSON.parse(fs.readFileSync(productsPath));
     const productIndex = allProducts.findIndex((prod, index) => {
